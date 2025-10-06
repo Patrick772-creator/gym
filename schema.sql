@@ -1,7 +1,6 @@
--- Drop tables if they already exist
 DROP TABLE IF EXISTS Bookings, Payments, Sessions, Trainers, Facilities, Members, Memberships;
 
--- Membership Types
+
 CREATE TABLE Memberships (
     membership_id INT PRIMARY KEY,
     type VARCHAR(50),
@@ -9,7 +8,7 @@ CREATE TABLE Memberships (
     cost DECIMAL(8,2)
 );
 
--- Members
+
 CREATE TABLE Members (
     member_id INT PRIMARY KEY,
     first_name VARCHAR(50),
@@ -19,7 +18,6 @@ CREATE TABLE Members (
     FOREIGN KEY (membership_id) REFERENCES Memberships(membership_id)
 );
 
--- Payments
 CREATE TABLE Payments (
     payment_id INT PRIMARY KEY,
     member_id INT,
@@ -28,7 +26,6 @@ CREATE TABLE Payments (
     FOREIGN KEY (member_id) REFERENCES Members(member_id)
 );
 
--- Trainers
 CREATE TABLE Trainers (
     trainer_id INT PRIMARY KEY,
     first_name VARCHAR(50),
@@ -36,14 +33,14 @@ CREATE TABLE Trainers (
     specialty VARCHAR(100)
 );
 
--- Facilities
+
 CREATE TABLE Facilities (
     facility_id INT PRIMARY KEY,
     name VARCHAR(100),
     location VARCHAR(100)
 );
 
--- Sessions
+
 CREATE TABLE Sessions (
     session_id INT PRIMARY KEY,
     trainer_id INT,
@@ -53,7 +50,7 @@ CREATE TABLE Sessions (
     FOREIGN KEY (facility_id) REFERENCES Facilities(facility_id)
 );
 
--- Bookings
+
 CREATE TABLE Bookings (
     booking_id INT PRIMARY KEY,
     member_id INT,
