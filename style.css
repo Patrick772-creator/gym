@@ -1,0 +1,72 @@
+/* Custom styles for Gym Management System with olive green theme */
+
+body {
+    background-color: #f5f5dc; /* Light beige background */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    padding: 20px;
+    margin-top: 20px;
+}
+
+h1, h2 {
+    color: #556B2F; /* Dark olive green */
+}
+
+.nav-pills .nav-link {
+    background-color: #808000; /* Olive green */
+    color: white;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: #556B2F; /* Darker olive */
+}
+
+.btn-primary {
+    background-color: #808000;
+    border-color: #808000;
+}
+
+.btn-primary:hover {
+    background-color: #556B2F;
+    border-color: #556B2F;
+}
+
+.btn-secondary {
+    background-color: #a0a0a0;
+    border-color: #a0a0a0;
+}
+
+.btn-warning {
+    background-color: #daa520;
+    border-color: #daa520;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.table {
+    background-color: #ffffff;
+}
+
+.table thead th {
+    background-color: #556B2F;
+    color: white;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #f0f0f0;
+}
+
+.form-control:focus {
+    border-color: #808000;
+    box-shadow: 0 0 0 0.2rem rgba(128, 128, 0, 0.25);
+}
