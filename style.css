@@ -1,8 +1,13 @@
-/* Custom styles for Gym Management System with olive green theme */
+/* Custom styles for Gym Management System with formal theme */
 
 body {
-    background-color: #f5f5dc; /* Light beige background */
-    font-family: Arial, sans-serif;
+    background-color: #f8f9fa; /* Light gray background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .container {
@@ -11,41 +16,43 @@ body {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     padding: 20px;
     margin-top: 20px;
+    width: 100%;
+    max-width: 1200px;
 }
 
 h1, h2 {
-    color: #556B2F; /* Dark olive green */
+    color: #003366; /* Navy blue */
 }
 
 .nav-pills .nav-link {
-    background-color: #808000; /* Olive green */
+    background-color: #003366; /* Navy blue */
     color: white;
     border-radius: 5px;
     margin-right: 5px;
 }
 
 .nav-pills .nav-link:hover {
-    background-color: #556B2F; /* Darker olive */
+    background-color: #002244; /* Darker navy */
 }
 
 .btn-primary {
-    background-color: #808000;
-    border-color: #808000;
+    background-color: #003366;
+    border-color: #003366;
 }
 
 .btn-primary:hover {
-    background-color: #556B2F;
-    border-color: #556B2F;
+    background-color: #002244;
+    border-color: #002244;
 }
 
 .btn-secondary {
-    background-color: #a0a0a0;
-    border-color: #a0a0a0;
+    background-color: #6c757d;
+    border-color: #6c757d;
 }
 
 .btn-warning {
-    background-color: #daa520;
-    border-color: #daa520;
+    background-color: #ffc107;
+    border-color: #ffc107;
 }
 
 .btn-danger {
@@ -58,15 +65,15 @@ h1, h2 {
 }
 
 .table thead th {
-    background-color: #556B2F;
+    background-color: #003366;
     color: white;
 }
 
 .table tbody tr:nth-child(even) {
-    background-color: #f0f0f0;
+    background-color: #f8f9fa;
 }
 
 .form-control:focus {
-    border-color: #808000;
-    box-shadow: 0 0 0 0.2rem rgba(128, 128, 0, 0.25);
+    border-color: #003366;
+    box-shadow: 0 0 0 0.2rem rgba(0, 51, 102, 0.25);
 }
