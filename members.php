@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "UPDATE Members SET first_name='$first_name', last_name='$last_name', dob='$dob', membership_id='$membership_id' WHERE member_id='$member_id'";
         if ($conn->query($sql) === TRUE) {
-            echo "Member updated successfully<br>";
             header("Location: members.php");
             exit();
         } else {
@@ -26,9 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } elseif (isset($_POST['action']) && $_POST['action'] == 'delete') {
         $member_id = $_POST['member_id'];
+        // Delete related records first to avoid foreign key constraint errors
+        $sql1 = "DELETE FROM Payments WHERE member_id='$member_id'";
+        $conn->query($sql1);
+        $sql2 = "DELETE FROM Bookings WHERE member_id='$member_id'";
+        $conn->query($sql2);
         $sql = "DELETE FROM Members WHERE member_id='$member_id'";
         if ($conn->query($sql) === TRUE) {
-            echo "Member deleted successfully<br>";
             header("Location: members.php");
             exit();
         } else {
@@ -43,7 +46,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "INSERT INTO Members (member_id, first_name, last_name, dob, membership_id) VALUES ('$member_id', '$first_name', '$last_name', '$dob', '$membership_id')";
         if ($conn->query($sql) === TRUE) {
-            echo "New member added successfully<br>";
             header("Location: members.php");
             exit();
         } else {

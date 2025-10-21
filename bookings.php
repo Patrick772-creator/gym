@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "UPDATE Bookings SET member_id='$member_id', session_id='$session_id' WHERE booking_id='$booking_id'";
         if ($conn->query($sql) === TRUE) {
-            echo "Booking updated successfully<br>";
             header("Location: bookings.php");
             exit();
         } else {
@@ -26,7 +25,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $booking_id = $_POST['booking_id'];
         $sql = "DELETE FROM Bookings WHERE booking_id='$booking_id'";
         if ($conn->query($sql) === TRUE) {
-            echo "Booking deleted successfully<br>";
             header("Location: bookings.php");
             exit();
         } else {
@@ -39,7 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "INSERT INTO Bookings (booking_id, member_id, session_id) VALUES ('$booking_id', '$member_id', '$session_id')";
         if ($conn->query($sql) === TRUE) {
-            echo "New booking added successfully<br>";
             header("Location: bookings.php");
             exit();
         } else {

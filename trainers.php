@@ -25,13 +25,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } elseif (isset($_POST['action']) && $_POST['action'] == 'delete') {
         $trainer_id = $_POST['trainer_id'];
-        $sql = "DELETE FROM Trainers WHERE trainer_id='$trainer_id'";
-        if ($conn->query($sql) === TRUE) {
-            echo "Trainer deleted successfully<br>";
-            header("Location: trainers.php");
-            exit();
+        // Check for dependent records
+        $check_sql = "SELECT COUNT(*) as count FROM Sessions WHERE trainer_id='$trainer_id'";
+        $check_result = $conn->query($check_sql);
+        $check_row = $check_result->fetch_assoc();
+        if ($check_row['count'] > 0) {
+            echo "Cannot delete trainer. There are sessions associated with this trainer.<br>";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $sql = "DELETE FROM Trainers WHERE trainer_id='$trainer_id'";
+            if ($conn->query($sql) === TRUE) {
+                echo "Trainer deleted successfully<br>";
+                header("Location: trainers.php");
+                exit();
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
     } else {
         $trainer_id = $_POST['trainer_id'];

@@ -24,13 +24,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } elseif (isset($_POST['action']) && $_POST['action'] == 'delete') {
         $facility_id = $_POST['facility_id'];
-        $sql = "DELETE FROM Facilities WHERE facility_id='$facility_id'";
-        if ($conn->query($sql) === TRUE) {
-            echo "Facility deleted successfully<br>";
-            header("Location: facilities.php");
-            exit();
+        // Check for dependent records
+        $check_sql = "SELECT COUNT(*) as count FROM Sessions WHERE facility_id='$facility_id'";
+        $check_result = $conn->query($check_sql);
+        $check_row = $check_result->fetch_assoc();
+        if ($check_row['count'] > 0) {
+            echo "Cannot delete facility. There are sessions associated with this facility.<br>";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $sql = "DELETE FROM Facilities WHERE facility_id='$facility_id'";
+            if ($conn->query($sql) === TRUE) {
+                echo "Facility deleted successfully<br>";
+                header("Location: facilities.php");
+                exit();
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
     } else {
         $facility_id = $_POST['facility_id'];

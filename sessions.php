@@ -25,13 +25,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } elseif (isset($_POST['action']) && $_POST['action'] == 'delete') {
         $session_id = $_POST['session_id'];
-        $sql = "DELETE FROM Sessions WHERE session_id='$session_id'";
-        if ($conn->query($sql) === TRUE) {
-            echo "Session deleted successfully<br>";
-            header("Location: sessions.php");
-            exit();
+        // Check for dependent records
+        $check_sql = "SELECT COUNT(*) as count FROM Bookings WHERE session_id='$session_id'";
+        $check_result = $conn->query($check_sql);
+        $check_row = $check_result->fetch_assoc();
+        if ($check_row['count'] > 0) {
+            echo "Cannot delete session. There are bookings associated with this session.<br>";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $sql = "DELETE FROM Sessions WHERE session_id='$session_id'";
+            if ($conn->query($sql) === TRUE) {
+                echo "Session deleted successfully<br>";
+                header("Location: sessions.php");
+                exit();
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
     } else {
         $session_id = $_POST['session_id'];

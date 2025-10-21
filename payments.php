@@ -17,7 +17,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "UPDATE Payments SET member_id='$member_id', amount='$amount', payment_date='$payment_date' WHERE payment_id='$payment_id'";
         if ($conn->query($sql) === TRUE) {
-            echo "Payment updated successfully<br>";
             header("Location: payments.php");
             exit();
         } else {
@@ -27,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $payment_id = $_POST['payment_id'];
         $sql = "DELETE FROM Payments WHERE payment_id='$payment_id'";
         if ($conn->query($sql) === TRUE) {
-            echo "Payment deleted successfully<br>";
             header("Location: payments.php");
             exit();
         } else {
@@ -41,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $sql = "INSERT INTO Payments (payment_id, member_id, amount, payment_date) VALUES ('$payment_id', '$member_id', '$amount', '$payment_date')";
         if ($conn->query($sql) === TRUE) {
-            echo "New payment added successfully<br>";
             header("Location: payments.php");
             exit();
         } else {

@@ -25,13 +25,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } elseif (isset($_POST['action']) && $_POST['action'] == 'delete') {
         $membership_id = $_POST['membership_id'];
-        $sql = "DELETE FROM Memberships WHERE membership_id='$membership_id'";
-        if ($conn->query($sql) === TRUE) {
-            echo "Membership deleted successfully<br>";
-            header("Location: memberships.php");
-            exit();
+        // Check for dependent records
+        $check_sql = "SELECT COUNT(*) as count FROM Members WHERE membership_id='$membership_id'";
+        $check_result = $conn->query($check_sql);
+        $check_row = $check_result->fetch_assoc();
+        if ($check_row['count'] > 0) {
+            echo "Cannot delete membership. There are members associated with this membership.<br>";
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+            $sql = "DELETE FROM Memberships WHERE membership_id='$membership_id'";
+            if ($conn->query($sql) === TRUE) {
+                echo "Membership deleted successfully<br>";
+                header("Location: memberships.php");
+                exit();
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
         }
     } else {
         $membership_id = $_POST['membership_id'];
