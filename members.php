@@ -99,7 +99,7 @@ $memberships_result = $conn->query("SELECT * FROM Memberships");
 $memberships_result->data_seek(0); // Reset pointer
 while($ms = $memberships_result->fetch_assoc()) {
     $selected = ($edit_row && $edit_row['membership_id'] == $ms['membership_id']) ? 'selected' : '';
-    echo "<option value='{$ms['membership_id']}' $selected>{$ms['type']} (ID: {$ms['membership_id']})</option>";
+    echo "<option value='{$ms['membership_id']}' $selected>{$ms['type']} - Cost: \${$ms['cost']}</option>";
 }
 ?>
 </select>

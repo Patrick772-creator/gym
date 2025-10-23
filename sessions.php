@@ -92,7 +92,7 @@ $result = $conn->query("SELECT s.session_id, t.first_name AS trainer_first, t.la
 $trainers_result->data_seek(0);
 while($tr = $trainers_result->fetch_assoc()) {
     $selected = ($edit_row && $edit_row['trainer_id'] == $tr['trainer_id']) ? 'selected' : '';
-    echo "<option value='{$tr['trainer_id']}' $selected>{$tr['first_name']} {$tr['last_name']} (ID: {$tr['trainer_id']})</option>";
+    echo "<option value='{$tr['trainer_id']}' $selected>{$tr['first_name']} {$tr['last_name']}</option>";
 }
 ?>
 </select>
@@ -109,7 +109,7 @@ while($tr = $trainers_result->fetch_assoc()) {
 $facilities_result->data_seek(0);
 while($fc = $facilities_result->fetch_assoc()) {
     $selected = ($edit_row && $edit_row['facility_id'] == $fc['facility_id']) ? 'selected' : '';
-    echo "<option value='{$fc['facility_id']}' $selected>{$fc['name']} (ID: {$fc['facility_id']})</option>";
+    echo "<option value='{$fc['facility_id']}' $selected>{$fc['name']}</option>";
 }
 ?>
 </select>

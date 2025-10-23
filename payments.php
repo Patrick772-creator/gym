@@ -80,7 +80,7 @@ $result = $conn->query("SELECT p.payment_id, m.first_name AS member_first, m.las
 $members_result->data_seek(0);
 while($m = $members_result->fetch_assoc()) {
     $selected = ($edit_row && $edit_row['member_id'] == $m['member_id']) ? 'selected' : '';
-    echo "<option value='{$m['member_id']}' $selected>{$m['first_name']} {$m['last_name']} (ID: {$m['member_id']})</option>";
+    echo "<option value='{$m['member_id']}' $selected>{$m['first_name']} {$m['last_name']}</option>";
 }
 ?>
 </select>
