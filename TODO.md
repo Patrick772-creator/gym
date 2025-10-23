@@ -1,5 +1,0 @@
-- [x] Edit payments.php: Remove (ID: {$m['member_id']}) from member selection options
-- [x] Edit bookings.php: Remove (ID: {$m['member_id']}) from member selection options
-- [x] Edit bookings.php: Remove "Session ID: {$s['session_id']} " from session selection options
-- [x] Edit sessions.php: Remove (ID: {$fc['facility_id']}) from facility selection options
-- [x] Edit sessions.php: Remove (ID: {$tr['trainer_id']}) from trainer selection options
